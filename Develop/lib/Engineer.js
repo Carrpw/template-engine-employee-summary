@@ -12,7 +12,7 @@ class Engineer extends Employee{
         return this.github;
     };
 
-    getTitle() {
+    getRole() {
         return this.title;
     };
 };
