@@ -127,8 +127,10 @@ function teamBuilderOutput() {
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }
-    fs.appendFileSync(outputPath, render(engineeringTeam), "utf8");
-}
+    fs.writeFileSync(outputPath, render(engineeringTeam), "utf8");
+};
+
+manager();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
