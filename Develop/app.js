@@ -35,57 +35,90 @@ function manager() {
         name: "managerOfficeNumber",
         message: "What is the managers office number?"
     }
-]).then(function(data) {
-    const manager = new Manager(data.managerName, data.managerId, data.managerEmail, data.managerOfficeNumber);
+]).then(function(info) {
+    const manager = new Manager(info.managerName, info.managerId, info.managerEmail, info.managerOfficeNumber);
     engineeringTeam.push(manager);
 
-})
+});
 
-const engineerQs = [
-    {
-        type: "input",
-        name: "engineerName",
-        message: "What is the engineers name?"
-    },
-    {
-        type: "input",
-        name: "engineerId",
-        message: "What is the engineers ID?"
-    },
-    {
-        type: "input",
-        name: "engineerEmail",
-        message: "What is the engineers email?"
-    },
-    {
-        type: "input",
-        name: "engineerGithub",
-        message: "What is the engineers Github username?"
-    }
-];
+function teamBuilder() {
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "pickTeam",
+            message: "Pick an engineering team member to add.",
+            choices: [
+                "Engineer",
+                "Intern",
+                "I don't need to add any more engineering team members."
+            ]
+        }
+    ]).then(function(info) {
+        if (info.pickTeam === "Engineer") {
+            engineer();
+        }
+        else if (info.pickTeam === "Intern") {
+            intern();
+        }
+        else (teamBuilderOutput());
+    });
+};
 
-const internQs = [
-    {
-        type: "input",
-        name: "internName",
-        message: "What is the interns name?"
-    },
-    {
-        type: "input",
-        name: "internId",
-        message: "What is the interns ID?"
-    },
-    {
-        type: "input",
-        name: "internEmail",
-        message: "What is the interns email?"
-    },
-    {
-        type: "input",
-        name: "internSchool",
-        message: "What is the interns school?"
-    }
-];
+function engineer() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "engineerName",
+            message: "What is the engineers name?"
+        },
+        {
+            type: "input",
+            name: "engineerId",
+            message: "What is the engineers ID?"
+        },
+        {
+            type: "input",
+            name: "engineerEmail",
+            message: "What is the engineers email?"
+        },
+        {
+            type: "input",
+            name: "engineerGithub",
+            message: "What is the engineers Github username?"
+        }
+    ]).then(function(info) {
+        const engineer = new Engineer(info.engineerName, info.engineerId, info.engineerEmail, info.engineerGithub);
+        engineeringTeam.push(engineer);
+
+    });
+
+function intern() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "What is the interns name?"
+        },
+        {
+            type: "input",
+            name: "internId",
+            message: "What is the interns ID?"
+        },
+        {
+            type: "input",
+            name: "internEmail",
+            message: "What is the interns email?"
+        },
+        {
+            type: "input",
+            name: "internSchool",
+            message: "What is the interns school?"
+        }
+    ]).then(function(info){
+        const intern = new Intern(info.internName, info.internId, info.internEmail, info.internSchool);
+        engineeringTeam.push(intern);
+        
+    })
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
