@@ -35,11 +35,12 @@ function manager() {
         name: "managerOfficeNumber",
         message: "What is the managers office number?"
     }
-]).then(function(info) {
+    ]).then(function(info) {
     const manager = new Manager(info.managerName, info.managerId, info.managerEmail, info.managerOfficeNumber);
     engineeringTeam.push(manager);
-
-});
+    teamBuilder();
+    });
+};
 
 function teamBuilder() {
     inquirer.prompt([
@@ -89,8 +90,9 @@ function engineer() {
     ]).then(function(info) {
         const engineer = new Engineer(info.engineerName, info.engineerId, info.engineerEmail, info.engineerGithub);
         engineeringTeam.push(engineer);
-
+        teamBuilder();
     });
+};
 
 function intern() {
     inquirer.prompt([
@@ -117,8 +119,16 @@ function intern() {
     ]).then(function(info){
         const intern = new Intern(info.internName, info.internId, info.internEmail, info.internSchool);
         engineeringTeam.push(intern);
-        
-    })
+        teamBuilder();
+    });
+};
+
+function teamBuilderOutput() {
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.appendFileSync(outputPath, render(engineeringTeam), "utf8");
+}
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
