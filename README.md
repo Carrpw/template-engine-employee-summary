@@ -43,4 +43,4 @@
   * Email: pwcarr15@gmail.com
   * Repo link for this project: https://github.com/Carrpw/template-engine-employee-summary
 
-  https://user-images.githubusercontent.com/73077219/108742917-44d51180-7506-11eb-9c01-66bbee9d103c.png
+![Screenshot (124)](https://user-images.githubusercontent.com/73077219/108742917-44d51180-7506-11eb-9c01-66bbee9d103c.png)
